@@ -14,6 +14,42 @@ namespace Pokemon
 
             // INITIALIZE YOUR THREE POKEMONS HERE
 
+            //creating all the move lists
+            List<Move> CharmanderMove = new List<Move>();
+            List<Move> BulbasaurMove = new List<Move>();
+            List<Move> SquirtleMove = new List<Move>();
+
+            //Making all the moves
+            Move Ember = new Move("Tail[0]");
+            Move FireBlast = new Move("Fire Blast[1]");
+
+            Move Bite = new Move("Bite[0]");
+            Move Bubble = new Move("Bubble[1]");
+
+            Move Cut = new Move("Cut[0]");
+            Move MegaDrain = new Move("Mega Drain[0]");
+            Move RazorLeaf = new Move("Razor Leaf[1]");
+
+            //Adding moves to lists
+            CharmanderMove.Add(Ember);
+            CharmanderMove.Add(FireBlast);
+
+            SquirtleMove.Add(Bite);
+            SquirtleMove.Add(Bubble);
+
+            BulbasaurMove.Add(Cut);
+            BulbasaurMove.Add(MegaDrain);
+            BulbasaurMove.Add(RazorLeaf);
+
+
+            //initializing pokemon
+            Pokemon Charmander = new Pokemon ("Charmander", 3, 52, 43, 39, Elements.Fire, CharmanderMove);
+            Pokemon Squirtle = new Pokemon ("Squirtle", 2, 48, 65, 44, Elements.Water, SquirtleMove);
+            Pokemon Bulbasaur = new Pokemon ("Bulbasaur", 3, 49, 49, 45, Elements.Grass, BulbasaurMove);
+            roster.Add(Charmander);
+            roster.Add(Squirtle);
+            roster.Add(Bulbasaur);
+
             Console.WriteLine("Welcome to the world of Pokemon!\nThe available commands are list/fight/heal/quit");
 
             while (true)
@@ -23,17 +59,84 @@ namespace Pokemon
                 {
                     case "list":
                         // PRINT THE POKEMONS IN THE ROSTER HERE
+                        Console.WriteLine("The available pokemons are: ");
                         break;
 
                     case "fight":
                         //PRINT INSTRUCTIONS AND POSSIBLE POKEMONS (SEE SLIDES FOR EXAMPLE OF EXECUTION)
-                        Console.Write("Choose who should fight(");
+                        Console.Write("Choose who should fight (Choose two) : " /*FIGURE OUT HOW TO PRINT ROSTER LIST*/);
 
                         //READ INPUT, REMEMBER IT SHOULD BE TWO POKEMON NAMES
                         string input = Console.ReadLine();
-                        //BE SURE TO CHECK THE POKEMON NAMES THE USER WROTE ARE VALID (IN THE ROSTER) AND IF THEY ARE IN FACT 2!
+                        string[] inputs = input.Split(' ');
+
+                        //Makes a player and enemy available
                         Pokemon player = null;
                         Pokemon enemy = null;
+
+                        switch (inputs[0])
+                        {
+                            //Sees which first command is given then decides second
+                            case "charmander":
+                            case "Charmander":
+                                switch (inputs[1])
+                                {
+                                    case "squirtle":
+                                    case "Squirtle":
+                                        player = roster[0];
+                                        enemy = roster[1];
+                                        break;
+
+                                    case "bulbasaur":
+                                    case "Bulbasaur":
+                                        player = roster[0];
+                                        enemy = roster[2];
+                                        break;
+                                }
+                                break;
+
+                            case "squirtle":
+                            case "Squirtle":
+                                switch (inputs[1])
+                                {
+                                    case "charmander":
+                                    case "Charmander":
+                                        player = roster[1];
+                                        enemy = roster[0];
+                                        break;
+
+                                    case "bulbasaur":
+                                    case "Bulbasaur":
+                                        player = roster[1];
+                                        enemy = roster[2];
+                                        break;
+                                }
+                                break;
+
+                            case "bulbasaur":
+                            case "Bulbasaur":
+                                switch (inputs[1])
+                                {
+                                    case "charmander":
+                                    case "Charmander":
+                                        player = roster[2];
+                                        enemy = roster[0];
+                                        break;
+
+                                    case "squirtle":
+                                    case "Squirtle":
+                                        player = roster[2];
+                                        enemy = roster[1];
+                                        break;
+                                }
+                                break;
+
+                            default:
+                                break;
+                        }
+
+                        //BE SURE TO CHECK THE POKEMON NAMES THE USER WROTE ARE VALID (IN THE ROSTER) AND IF THEY ARE IN FACT 2!
+                        
 
                         //if everything is fine and we have 2 pokemons let's make them fight
                         if (player != null && enemy != null && player != enemy)
@@ -45,7 +148,39 @@ namespace Pokemon
                             while (player.Hp > 0 && enemy.Hp > 0)
                             {
                                 //PRINT POSSIBLE MOVES
-                                Console.Write("What move should we use? (");
+                                Console.Write("What move should we use? (" + player.Moves + " )");
+
+                                if (player == Charmander)
+                                {
+                                    switch (Console.ReadLine())
+                                    {
+                                        case "Ember":
+                                        case "FireBlast":
+                                            //Pokemon.Attack(Pokemon.enemy);
+                                        break;
+                                    }
+                                }
+                                else if (player == Squirtle)
+                                {
+                                    switch (Console.ReadLine())
+                                    {
+                                        case "Bite":
+                                        case "Bubble":
+
+                                        break;
+                                    }
+                                }
+                                else if (player == Bulbasaur)
+                                {
+                                    switch (Console.ReadLine())
+                                    {
+                                        case "Cut":
+                                        case "MegaDrain":
+                                        case "RazorLeaf":
+
+                                        break;
+                                    }
+                                }
 
                                 //GET USER ANSWER, BE SURE TO CHECK IF IT'S A VALID MOVE, OTHERWISE ASK AGAIN
                                 int move = -1; //change this

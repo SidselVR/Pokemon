@@ -14,3 +14,11 @@ C:\Users\Goldb\OneDrive\Uni\2. Semester\3D applikationer\Pokemon\obj\Debug\Pokem
 C:\Users\Goldb\OneDrive\Uni\2. Semester\3D applikationer\Pokemon\obj\Debug\Pokemon.csproj.CoreCompileInputs.cache
 C:\Users\Goldb\OneDrive\Uni\2. Semester\3D applikationer\Pokemon\obj\Debug\Pokemon.exe
 C:\Users\Goldb\OneDrive\Uni\2. Semester\3D applikationer\Pokemon\obj\Debug\Pokemon.pdb
+C:\Users\Goldb\Desktop\Programmering\Git repos\Pokemon\Pokemon\bin\Debug\Pokemon.exe.config
+C:\Users\Goldb\Desktop\Programmering\Git repos\Pokemon\Pokemon\bin\Debug\Pokemon.exe
+C:\Users\Goldb\Desktop\Programmering\Git repos\Pokemon\Pokemon\bin\Debug\Pokemon.pdb
+C:\Users\Goldb\Desktop\Programmering\Git repos\Pokemon\Pokemon\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
+C:\Users\Goldb\Desktop\Programmering\Git repos\Pokemon\Pokemon\obj\Debug\Pokemon.csprojResolveAssemblyReference.cache
+C:\Users\Goldb\Desktop\Programmering\Git repos\Pokemon\Pokemon\obj\Debug\Pokemon.csproj.CoreCompileInputs.cache
+C:\Users\Goldb\Desktop\Programmering\Git repos\Pokemon\Pokemon\obj\Debug\Pokemon.exe
+C:\Users\Goldb\Desktop\Programmering\Git repos\Pokemon\Pokemon\obj\Debug\Pokemon.pdb
