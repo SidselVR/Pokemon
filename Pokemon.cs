@@ -34,6 +34,9 @@ namespace Pokemon
         public List<Move> Moves { get; }
         //can also be used to get/set other private fields
         public int Hp { get => hp; }
+        public int Damage;
+        public int defence;
+        public int elementalEffect;
 
         /// <summary>
         /// Constructor for a Pokemon, the arguments are fairly self-explanatory
@@ -67,9 +70,14 @@ namespace Pokemon
         /// <returns>The amount of damage that was applied so we can print it for the user</returns>
         public int Attack(Pokemon enemy)
         {
-            throw new NotImplementedException();
-            //public int damage = (this.baseAttack * this.level) * this.elementalEffect - (enemy.baseDefence * enemy.level);
-            //return damage;
+            enemy.CalculateDefence();
+            Damage = (this.baseAttack * this.level) - (enemy.defence);
+            if (Damage < 0)
+            {
+                Damage = 0;
+            }
+            enemy.ApplyDamage(Damage);
+            return Damage;
         }
 
         /// <summary>
@@ -78,10 +86,8 @@ namespace Pokemon
         /// <returns> returns the amount of defence points considering the level as well</returns>
         public int CalculateDefence()
         {
-            throw new NotImplementedException();
-            //public int defence;
-            //this.defence= this.baseDefence * this.level;
-            //return defence;
+            this.defence= this.baseDefence * this.level;
+            return defence;
         }
 
         /// <summary>
@@ -93,36 +99,35 @@ namespace Pokemon
         public int CalculateElementalEffects(int damage, Elements enemyType)
         {
             throw new NotImplementedException();
-            //public int elementalEffect;
-            /*if (this.element = Fire)
+            /*if (this.element == Elements.Fire)
             {
-                if (enemy.element = Water)
+                if (enemy.element == Elements.Water)
                 {
                     this.elementalEffect = 0.5;
                 }
-                else if (enemy.element = Grass)
+                else if (enemy.element == Elements.Grass)
                 {
                     this.elementalEffect = 2;
                 }
             }
-            if (this.element = Water)
+            if (this.element == Elements.Water)
             {
-                if (enemy.element = Grass)
+                if (enemy.element == Elements.Grass)
                 {
-                    this.elementalEffect = 0.5;
+                    this.elementalEffect = 0.5f;
                 }
-                else if (enemy.element = Fire)
+                else if (enemy.element == Elements.Fire)
                 {
                     this.elementalEffect = 2;
                 }
             }
-            if (this.element = Grass)
+            if (this.element == Elements.Grass)
             {
-                if (enemy.element = Fire)
+                if (enemy.element == Elements.Fire)
                 {
-                    this.elementalEffect = 0.5;
+                    this.elementalEffect = 0.5f;
                 }
-                else if (enemy.element = Water)
+                else if (enemy.element == Elements.Water)
                 {
                     this.elementalEffect = 2;
                 }
@@ -135,8 +140,7 @@ namespace Pokemon
         /// <param name="damage"></param>
         public void ApplyDamage(int damage)
         {
-            throw new NotImplementedException();
-            //enemy.hp = enemy.hp - damage;
+                this.hp = this.hp - Damage;
         }
 
         /// <summary>
