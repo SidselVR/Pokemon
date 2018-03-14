@@ -140,7 +140,7 @@ namespace Pokemon
         /// <param name="damage"></param>
         public void ApplyDamage(int damage)
         {
-                this.hp = this.hp - Damage;
+            this.hp = this.hp - Damage;
         }
 
         /// <summary>
