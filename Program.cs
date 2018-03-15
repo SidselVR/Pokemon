@@ -13,7 +13,7 @@ namespace Pokemon
 
             List<Pokemon> roster = new List<Pokemon>();
 
-            // INITIALIZE YOUR THREE POKEMONS HERE
+            // INITIALIZE YOUR THREE POKEMONS HERE (I did moves too)
 
             //creating all the move lists
             List<Move> CharmanderMove = new List<Move>();
@@ -43,7 +43,7 @@ namespace Pokemon
             BulbasaurMove.Add(RazorLeaf);
 
 
-            //initializing pokemon
+            //making and initializing pokemon
             Pokemon Charmander = new Pokemon ("Charmander", 3, 52, 43, 39, Elements.Fire, CharmanderMove);
             Pokemon Squirtle = new Pokemon ("Squirtle", 2, 48, 65, 44, Elements.Water, SquirtleMove);
             Pokemon Bulbasaur = new Pokemon ("Bulbasaur", 3, 49, 49, 45, Elements.Grass, BulbasaurMove);
@@ -53,13 +53,15 @@ namespace Pokemon
 
             Console.WriteLine("Welcome to the world of Pokemon!\nThe available commands are list/fight/heal/quit");
 
+            //what's going to happen/where commands are taken and actions made
             while (true)
             {
                 Console.WriteLine("\nPlese enter a command");
+                //Reads what command you did and acts accordingly
                 switch (Console.ReadLine())
                 {
                     case "list":
-                        // PRINT THE POKEMONS IN THE ROSTER HERE
+                        // PRINT THE POKEMONS IN THE ROSTER HERE (pokemon in roseter printed through for loop)
                         Console.WriteLine("The available pokemons are: ");
                         for (int i = 0; i < 3; i++)
                         {
@@ -68,11 +70,15 @@ namespace Pokemon
                         break;
 
                     case "fight":
-                        //PRINT INSTRUCTIONS AND POSSIBLE POKEMONS (SEE SLIDES FOR EXAMPLE OF EXECUTION)
-                        Console.Write("Choose who should fight (Choose two pokemon) : ");
-                        
+                        //PRINT INSTRUCTIONS AND POSSIBLE POKEMONS (SEE SLIDES FOR EXAMPLE OF EXECUTION) (same for loop used)
+                        Console.Write("Choose who should fight (Choose two pokemon) : \n");
+                        for (int i = 0; i < 3; i++)
+                        {
+                            Console.WriteLine(roster[i].Name);
+                        }
 
-                        //READ INPUT, REMEMBER IT SHOULD BE TWO POKEMON NAMES
+
+                        //READ INPUT, REMEMBER IT SHOULD BE TWO POKEMON NAMES (reads and splits command at each "space" for easier use)
                         string input = Console.ReadLine();
                         string[] inputs = input.Split(' ');
 
@@ -82,7 +88,7 @@ namespace Pokemon
 
                         switch (inputs[0])
                         {
-                            //Sees which first command is given then decides second
+                            //Sees which first command is given then decides second, sets players accordingly
                             case "charmander":
                             case "Charmander":
                                 switch (inputs[1])
@@ -98,15 +104,19 @@ namespace Pokemon
                                         player = roster[0];
                                         enemy = roster[2];
                                         break;
+
+                                    case "":
+                                        continue;
                                 }
+
                                 break;
 
                             case "squirtle":
                             case "Squirtle":
                                 switch (inputs[1])
                                 {
-                                    case "charmander":
-                                    case "Charmander":
+                                    case "charmander ":
+                                    case "Charmander ":
                                         player = roster[1];
                                         enemy = roster[0];
                                         break;
@@ -116,6 +126,9 @@ namespace Pokemon
                                         player = roster[1];
                                         enemy = roster[2];
                                         break;
+
+                                    case "":
+                                        continue;
                                 }
                                 break;
 
@@ -134,15 +147,20 @@ namespace Pokemon
                                         player = roster[2];
                                         enemy = roster[1];
                                         break;
+
+                                    case "":
+                                        continue;
                                 }
                                 break;
 
+                            case "":
+                                continue;
+
                             default:
-                                break;
+                                continue;
                         }
 
                         //BE SURE TO CHECK THE POKEMON NAMES THE USER WROTE ARE VALID (IN THE ROSTER) AND IF THEY ARE IN FACT 2!
-                        
 
                         //if everything is fine and we have 2 pokemons let's make them fight
                         if (player != null && enemy != null && player != enemy)
@@ -153,8 +171,8 @@ namespace Pokemon
                             //BEGIN FIGHT LOOP
                             while (player.Hp > 0 && enemy.Hp > 0)
                             {
-                                //PRINT POSSIBLE MOVES
-                                Console.Write("What move should we use? ");
+                                //PRINT POSSIBLE MOVES / moves are checked in the if statement so that each player has the moved for their pokemon printed
+                                Console.Write("What move should we use? \n");
 
                                 //Explanation here repeats for the next else if's 
                                 if (player == Charmander)
@@ -181,7 +199,7 @@ namespace Pokemon
 
                                         default:
                                             Console.WriteLine("Unknown move.");
-                                            break;
+                                            continue;
                                     }
 
                                 }
@@ -206,7 +224,7 @@ namespace Pokemon
 
                                         default:
                                             Console.WriteLine("Unknown move.");
-                                            break;
+                                            continue;
                                     }
                                 }
                                 else if (player == Bulbasaur)
@@ -235,17 +253,13 @@ namespace Pokemon
 
                                         default:
                                             Console.WriteLine("Unknown move.");
-                                            break;
+                                            continue;
                                     }
                                 }
 
-                                //GET USER ANSWER, BE SURE TO CHECK IF IT'S A VALID MOVE, OTHERWISE ASK AGAIN
-                                //int move = -1; //change this
-
-                                //CALCULATE AND APPLY DAMAGE
-                                //int damage = -1; //change this
-
-                                //print the move and damage
+                                //GET USER ANSWER, BE SURE TO CHECK IF IT'S A VALID MOVE, OTHERWISE ASK AGAIN (made above)
+                                //CALCULATE AND APPLY DAMAGE (done in pokemon script)
+                                //print the move and damage (also done above)
 
 
                                 //if the enemy is not dead yet, it attacks
@@ -258,19 +272,20 @@ namespace Pokemon
                                      * rand.Next(X) 
                                      * where X is a number 
                                      */
-                                    //int enemyMove = -1; //change this and the lower one
-                                    //int enemyDamage = -1;
+                                     //checks which pokemon the enemy is (explanation repeats for next if's)
                                     if (enemy == Charmander)
                                     {
+                                        //picks a random number from 0-1 (in Bulbasaur it's from 0-2)
                                         switch (rand.Next(2))
                                         {
+                                            //performs attack depending on move
                                             case 0:
-                                                enemy.Attack(player);
+                                                enemy.AttackEnemy(player);
                                                 Console.WriteLine(enemy.Name + " uses " + enemy.Moves[0].Name + ". " + player.Name + " loses " + enemy.Damage + " HP");
                                                 break;
 
                                             case 1:
-                                                enemy.Attack(player);
+                                                enemy.AttackEnemy(player);
                                                 Console.WriteLine(enemy.Name + " uses " + enemy.Moves[1].Name + ". " + player.Name + " loses " + enemy.Damage + " HP");
                                                 break;
                                         }
@@ -280,12 +295,12 @@ namespace Pokemon
                                         switch (rand.Next(2))
                                         {
                                             case 0:
-                                                enemy.Attack(player);
+                                                enemy.AttackEnemy(player);
                                                 Console.WriteLine(enemy.Name + " uses " + enemy.Moves[0].Name + ". " + player.Name + " loses " + enemy.Damage + " HP");
                                                 break;
 
                                             case 1:
-                                                enemy.Attack(player);
+                                                enemy.AttackEnemy(player);
                                                 Console.WriteLine(enemy.Name + " uses " + enemy.Moves[1].Name + ". " + player.Name + " loses " + enemy.Damage + " HP");
                                                 break;
                                         }
@@ -295,23 +310,23 @@ namespace Pokemon
                                         switch (rand.Next(3))
                                         {
                                             case 0:
-                                                enemy.Attack(player);
+                                                enemy.AttackEnemy(player);
                                                 Console.WriteLine(enemy.Name + " uses " + enemy.Moves[0].Name + ". " + player.Name + " loses " + enemy.Damage + " HP");
                                                 break;
 
                                             case 1:
-                                                enemy.Attack(player);
+                                                enemy.AttackEnemy(player);
                                                 Console.WriteLine(enemy.Name + " uses " + enemy.Moves[1].Name + ". " + player.Name + " loses " + enemy.Damage + " HP");
                                                 break;
 
                                             case 2:
-                                                enemy.Attack(player);
+                                                enemy.AttackEnemy(player);
                                                 Console.WriteLine(enemy.Name + " uses " + enemy.Moves[2].Name + ". " + player.Name + " loses " + enemy.Damage + " HP");
                                                 break;
                                         }
                                     }
 
-                                    //print the move and damage
+                                    //print the move and damage (done above)
                                     //Console.WriteLine(enemy.Name + " uses " + enemy.Moves[enemyMove].Name + ". " + player.Name + " loses " + enemyDamage + " HP");
                                 }
                             }
@@ -334,7 +349,7 @@ namespace Pokemon
 
                     case "heal":
                         //RESTORE ALL POKEMONS IN THE ROSTER
-
+                        //calls each pokemon's Restore function to heal all of them, then tells the player
                         for (int i = 0; i < 3; i++)
                         {
                             roster[i].Restore();
@@ -342,6 +357,7 @@ namespace Pokemon
                         Console.WriteLine("All pokemons have been healed");
                         break;
 
+                        //quits the game
                     case "quit":
                         Environment.Exit(0);
                         break;
